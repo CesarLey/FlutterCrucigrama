@@ -1,9 +1,3 @@
-# generate_crossword
-
-A new Flutter project.
-# CrossWords — Juego de crucigramas
-
-Una aplicación de crucigramas hecha con Flutter. Esta rama contiene la app cliente, generador de crucigramas, integración con Supabase para guardar puntuaciones y utilidades para reproducir música y sonidos de juego.
 # CrossWords — Juego de crucigramas
 
 Descripción
