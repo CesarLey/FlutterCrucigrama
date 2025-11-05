@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
+import 'leaderboard_dialog.dart';
 import 'crossword_generator_widget.dart';
 import 'crossword_puzzle_widget.dart';
 import 'puzzle_completed_widget.dart';
@@ -16,6 +17,15 @@ class CrosswordPuzzleApp extends StatelessWidget {
         appBar: AppBar(
           actions: [
             _CategorySelector(),
+            // Top 5 icon placed next to category and settings icons
+            Consumer(builder: (context, ref, _) {
+              final selectedCategory = ref.watch(selectedCategoryProvider);
+              return IconButton(
+                tooltip: 'Top 5',
+                icon: Icon(Icons.leaderboard),
+                onPressed: () => showLeaderboardDialog(context, categoryId: selectedCategory?.id, limit: 5),
+              );
+            }),
             SizedBox(width: 8),
             _CrosswordPuzzleAppMenu(),
           ],
