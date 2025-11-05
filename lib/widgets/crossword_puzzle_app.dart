@@ -19,11 +19,11 @@ class CrosswordPuzzleApp extends StatelessWidget {
             _CategorySelector(),
             // Top 5 icon placed next to category and settings icons
             Consumer(builder: (context, ref, _) {
-              final selectedCategory = ref.watch(selectedCategoryProvider);
               return IconButton(
                 tooltip: 'Top 5',
                 icon: Icon(Icons.leaderboard),
-                onPressed: () => showLeaderboardDialog(context, categoryId: selectedCategory?.id, limit: 5),
+                // Abrir TOP 5 global (no filtrar por categoría)
+                onPressed: () => showLeaderboardDialog(context, limit: 5),
               );
             }),
             SizedBox(width: 8),
