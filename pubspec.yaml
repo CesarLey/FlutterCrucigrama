@@ -21,6 +21,8 @@ dependencies:
   connectivity_plus: ^6.1.0
   http: ^1.2.2
   audioplayers: ^6.5.1
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +39,19 @@ flutter:
   assets:
     - assets/words.txt
     - assets/audio/
+
+# Configuration for launcher icons
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+
+# Configuration for native splash screen
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/splash/splash.png"
+  android: true
+  ios: true
+  web: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFill
