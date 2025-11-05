@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
 import '../services/supabase_service.dart';
+import '../services/audio_service.dart';
 
 class PuzzleCompletedWidget extends ConsumerStatefulWidget {
   const PuzzleCompletedWidget({super.key});
@@ -25,6 +26,8 @@ class _PuzzleCompletedWidgetState extends ConsumerState<PuzzleCompletedWidget> {
       if (mounted) setState(() {});
     };
     _nameController.addListener(_nameListener!);
+    // Reproducir sonido de completado cuando se muestre este widget
+    AudioService.playEffect();
   }
 
   @override
