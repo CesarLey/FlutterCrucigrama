@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
 import 'leaderboard_dialog.dart';
+import '../services/audio_service.dart';
 import 'crossword_generator_widget.dart';
 import 'crossword_puzzle_widget.dart';
 import 'puzzle_completed_widget.dart';
@@ -55,12 +56,25 @@ class CrosswordPuzzleApp extends StatelessWidget {
               return workQueueAsync.when(
                 data: (workQueue) {
                   if (puzzleSolved) {
+                    // Stop background music when puzzle is completed
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      AudioService.stop();
+                    });
                     return PuzzleCompletedWidget();
                   }
-                  if (workQueue.isCompleted &&
-                      workQueue.crossword.characters.isNotEmpty) {
+
+                  if (workQueue.isCompleted && workQueue.crossword.characters.isNotEmpty) {
+                    // Start background music when the player starts playing
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      AudioService.playBackground();
+                    });
                     return CrosswordPuzzleWidget();
                   }
+
+                  // Not yet ready to play
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    AudioService.stop();
+                  });
                   return CrosswordGeneratorWidget();
                 },
                 loading: () => Center(child: CircularProgressIndicator()),
